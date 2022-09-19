@@ -1,3 +1,19 @@
+window.onload = function () {
+  let audioList = getAudioList();
+  console.log(audioList.length);
+
+  for (let i = 0; i < audioList.length; i++) {
+    if (i != 0) {
+      create(
+        audioList[i][0],
+        audioList[i][1],
+        audioList[i][2],
+        audioList[i][3]
+      );
+    }
+  }
+};
+
 // 再生
 function audioPlay(num) {
   document.getElementById("btn_audio" + num).play();
@@ -50,4 +66,88 @@ function allStop() {
 function playGorilla() {
   document.getElementById("gorilla").currentTime = 0;
   document.getElementById("gorilla").play();
+}
+
+// 追加
+function create(id, title, path, memo) {
+  let newElement = document.createElement("div");
+  newElement.setAttribute("class", "box");
+  newElement.setAttribute("id", "audio" + id);
+  //親要素を取得しdiv要素を追加
+  let parentBody = document.getElementsByTagName("body");
+  parentBody[0].appendChild(newElement);
+
+  let parentDiv = document.getElementById("audio" + id);
+
+  //曲名追加
+  let titleElement = document.createElement("h1");
+  let titleContent = document.createTextNode(title);
+  titleElement.appendChild(titleContent);
+  parentDiv.appendChild(titleElement);
+
+  //ボタン追加
+  createBtn(id, "audioPlay", "再生");
+  createBtn(id, "audioPause", "一時停止");
+  createBtn(id, "audioStop", "停止");
+  createBtn(id, "audioUp", "UP");
+  createBtn(id, "audioDown", "DOWN");
+
+  //音量追加
+  let levelElement = document.createElement("p");
+  let levelContent = document.createTextNode("10");
+  levelElement.setAttribute("id", "audioLevel" + id);
+  levelElement.setAttribute("style", "display: inline");
+  levelElement.appendChild(levelContent);
+  parentDiv.appendChild(levelElement);
+
+  //オーディオオブジェクト追加
+  let audioElement = document.createElement("audio");
+  audioElement.setAttribute("id", "btn_audio" + id);
+  audioElement.setAttribute("controls", "true");
+  parentDiv.appendChild(audioElement);
+  let audioFile = document.createElement("source");
+  audioFile.setAttribute("src", "./audio/" + path);
+  audioFile.setAttribute("type", "audio/mp3");
+  audioElement.appendChild(audioFile);
+}
+
+//ボタン追加
+function createBtn(id, methodName, BtnName) {
+  let newElement = document.createElement("button");
+  let newContent = document.createTextNode(BtnName);
+  newElement.appendChild(newContent);
+  newElement.setAttribute("class", "btn");
+  newElement.setAttribute("onclick", methodName + "(" + id + ")");
+
+  let parent = document.getElementById("audio" + id);
+  parent.appendChild(newElement);
+}
+
+function getAudioList() {
+  // CSVファイルを文字列として取得
+  let srt = new XMLHttpRequest();
+
+  srt.open("GET", "music_list.csv", false);
+
+  try {
+    srt.send(null);
+  } catch (err) {
+    console.log(err);
+  }
+
+  // 配列を用意
+  let csletr = [];
+
+  // 改行ごとに配列化
+  let lines = srt.responseText.split(/\r\n|\n/);
+
+  // 1行ごとに処理
+  for (let i = 0; i < lines.length; ++i) {
+    let cells = lines[i].split(",");
+    if (cells.length != 1) {
+      csletr.push(cells);
+    }
+  }
+
+  return csletr;
 }
