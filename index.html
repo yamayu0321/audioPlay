@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="css.css" />
+    <script src="index.js"></script>
+    <script src="const.js"></script>
+    <title>再生システム</title>
+  </head>
+  <body>
+    <div class="box" id="audio1">
+      <h1>1曲目</h1>
+      <button class="btn" onclick="audioPlay(1)">再生</button>
+      <button class="btn" onclick="audioPause(1)">一時停止</button>
+      <button class="btn" onclick="audioStop(1)">停止</button>
+      <button class="btn" onclick="audioUp(1)">UP</button>
+      <button class="btn" onclick="audioDown(1)">DOWN</button>
+      <p id="audioLevel1" style="display: inline">10</p>
+      <audio id="btn_audio1" controls>
+        <source src="./audio/test1.wav" type="audio/mp3" />
+      </audio>
+      <p class="memo">テスト</p>
+    </div>
+    <div class="box" id="audio2">
+      <h1>2曲目</h1>
+      <button class="btn" onclick="audioPlay(2)">再生</button>
+      <button class="btn" onclick="audioPause(2)">一時停止</button>
+      <button class="btn" onclick="audioStop(2)">停止</button>
+      <button class="btn" onclick="audioUp(2)">UP</button>
+      <button class="btn" onclick="audioDown(2)">DOWN</button>
+      <p id="audioLevel2" style="display: inline">10</p>
+      <audio id="btn_audio2" controls>
+        <source src="./audio/test2.mp3" type="audio/mp3" />
+      </audio>
+    </div>
+    <div class="box" id="audio3">
+      <h1>3曲目</h1>
+      <button class="btn" onclick="audioPlay(3)">再生</button>
+      <button class="btn" onclick="audioPause(3)">一時停止</button>
+      <button class="btn" onclick="audioStop(3)">停止</button>
+      <button class="btn" onclick="audioUp(3)">UP</button>
+      <button class="btn" onclick="audioDown(3)">DOWN</button>
+      <p id="audioLevel3" style="display: inline">10</p>
+      <audio id="btn_audio3" controls>
+        <source src="./audio/test3.mp3" type="audio/mp3" />
+      </audio>
+    </div>
+  </body>
+  <footer>
+    <button class="btn" id="reset" onclick="allStop()">リセット</button>
+    <button class="btn" id="reset" onclick="playGorilla()">ゴリラ</button>
+    <audio id="gorilla">
+      <source src="./audio/gorilla.mp3" type="audio/mp3" />
+    </audio>
+  </footer>
+</html>
