@@ -9,6 +9,7 @@
   </head>
   <body></body>
   <footer>
+    <button class="btn" id="reset" onclick="allStart()">全部開始</button>
     <button class="btn" id="reset" onclick="allStop()">リセット</button>
     <button class="btn" onclick="playSE('gorilla')">ゴリラ</button>
     <audio id="gorilla">
@@ -22,5 +23,24 @@
     <audio id="bomb">
       <source src="./audio/bomb.mp3" type="audio/mp3" />
     </audio>
+    <button class="btn" onclick="playSE('hyuun')">ヒューン</button>
+    <audio id="hyuun">
+      <source src="./audio/hyuun.mp3" type="audio/mp3" />
+    </audio>
+    <form name="transition" style="display: inline">
+      <p style="display: inline">終了→</p>
+      <select name="inMusic">
+        <option value="1">1曲目</option>
+        <option value="2">2曲目</option>
+        <option value="3">3曲目</option>
+      </select>
+      <p style="display: inline">開始→</p>
+      <select name="outMusic">
+        <option value="1">1曲目</option>
+        <option value="2">2曲目</option>
+        <option value="3">3曲目</option>
+      </select>
+      <input type="button" value="切り替え" onclick="audioTransition()" />
+    </form>
   </footer>
 </html>

@@ -1,3 +1,8 @@
+//固定値
+const baseVol = 1.0; //ベースボリューム
+const fadeSpeed = 2000; //フェードインスピード
+
+//ページ読み込み時実行プログラム
 window.onload = function () {
   let audioList = getAudioList();
   console.log(audioList.length);
@@ -62,6 +67,19 @@ function allStop() {
   if (result) {
     for (let i = 1; i < 10; i++) {
       audioStop(i);
+    }
+  }
+}
+
+// 全部開始
+function allStart() {
+  let result = confirm("すべて開始しますか？※1曲目以外音量0");
+  if (result) {
+    for (let i = 1; i < 10; i++) {
+      audioPlay(i);
+      if (i != 1) {
+        document.getElementById("btn_audio" + i).volume = 0;
+      }
     }
   }
 }
@@ -155,4 +173,43 @@ function getAudioList() {
   }
 
   return csletr;
+}
+
+/**
+ * オーディオ入れ替え
+ */
+function audioTransition() {
+  let inNum = document.transition.inMusic.selectedIndex;
+  let outNum = document.transition.outMusic.selectedIndex;
+
+  let inMusicId = document.transition.inMusic.options[inNum].value;
+  let outMusicId = document.transition.outMusic.options[outNum].value;
+
+  audioFadeOut(inMusicId);
+  audioFadeIn(outMusicId);
+}
+
+/**
+ * フェードイン
+ */
+async function audioFadeIn(num) {
+  let audio = document.getElementById("btn_audio" + num);
+  audio.volume = 0;
+  var start_func = setInterval(function () {
+    audio.volume = audio.volume + baseVol / 100;
+    if (audio.volume >= baseVol - baseVol / 100) {
+      audio.volume = baseVol;
+      clearInterval(start_func);
+    }
+  }, (fadeSpeed * baseVol) / 100);
+}
+
+/**
+ * フェードアウト
+ */
+async function audioFadeOut(num) {
+  let audio = document.getElementById("btn_audio" + num);
+  var end_func = setInterval(function () {
+    audio.volume = audio.volume - baseVol / 100;
+  }, (fadeSpeed * baseVol) / 100);
 }
