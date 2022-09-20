@@ -14,13 +14,17 @@ window.onload = function () {
   }
 };
 
-// 再生
+/**
+ * 再生
+ */
 function audioPlay(num) {
   document.getElementById("btn_audio" + num).play();
   document.getElementById("audio" + num).style.background = "#ffd5d5";
 }
 
-// 一時停止
+/**
+ * 一時停止
+ */
 function audioPause(num) {
   let nowTime = document.getElementById("btn_audio" + num).currentTime;
   if (nowTime != 0) {
@@ -123,6 +127,7 @@ function createBtn(id, methodName, BtnName) {
   parent.appendChild(newElement);
 }
 
+//CSVファイルを読み取って配列を返す
 function getAudioList() {
   // CSVファイルを文字列として取得
   let srt = new XMLHttpRequest();
