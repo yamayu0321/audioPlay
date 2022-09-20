@@ -10,9 +10,17 @@
   <body></body>
   <footer>
     <button class="btn" id="reset" onclick="allStop()">リセット</button>
-    <button class="btn" id="reset" onclick="playGorilla()">ゴリラ</button>
+    <button class="btn" onclick="playSE('gorilla')">ゴリラ</button>
     <audio id="gorilla">
       <source src="./audio/gorilla.mp3" type="audio/mp3" />
+    </audio>
+    <button class="btn" onclick="playSE('gun')">銃声</button>
+    <audio id="gun">
+      <source src="./audio/gun.mp3" type="audio/mp3" />
+    </audio>
+    <button class="btn" onclick="playSE('bomb')">爆発音</button>
+    <audio id="bomb">
+      <source src="./audio/bomb.mp3" type="audio/mp3" />
     </audio>
   </footer>
 </html>

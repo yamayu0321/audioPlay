@@ -67,9 +67,9 @@ function allStop() {
 }
 
 // ゴリラSE再生
-function playGorilla() {
-  document.getElementById("gorilla").currentTime = 0;
-  document.getElementById("gorilla").play();
+function playSE(seName) {
+  document.getElementById(seName).currentTime = 0;
+  document.getElementById(seName).play();
 }
 
 // 追加

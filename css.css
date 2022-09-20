@@ -50,3 +50,17 @@ footer {
 body {
   padding-bottom: 100px;
 }
+
+#reset {
+  background-color: crimson;
+  color: #ffffff;
+  margin-right: 40px;
+}
+
+#reset:hover {
+  background: rgb(238, 179, 187);
+}
+
+#reset:active {
+  background: rgb(123, 104, 106);
+}
