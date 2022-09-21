@@ -64,3 +64,9 @@ body {
 #reset:active {
   background: rgb(123, 104, 106);
 }
+
+select {
+  height: 40px;
+  width: auto;
+  font-size: 1em;
+}

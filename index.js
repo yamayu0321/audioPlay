@@ -1,5 +1,5 @@
 //固定値
-const baseVol = 1.0; //ベースボリューム
+const baseVol = 0.8; //ベースボリューム
 const fadeSpeed = 2000; //フェードインスピード
 
 //ページ読み込み時実行プログラム
@@ -193,12 +193,12 @@ function audioTransition() {
  * フェードイン
  */
 async function audioFadeIn(num) {
-  let audio = document.getElementById("btn_audio" + num);
-  audio.volume = 0;
+  let audioIn = document.getElementById("btn_audio" + num);
+  audioIn.volume = 0;
   var start_func = setInterval(function () {
-    audio.volume = audio.volume + baseVol / 100;
-    if (audio.volume >= baseVol - baseVol / 100) {
-      audio.volume = baseVol;
+    audioIn.volume = audioIn.volume + baseVol / 100;
+    if (audioIn.volume >= baseVol - baseVol / 100) {
+      audioIn.volume = baseVol;
       clearInterval(start_func);
     }
   }, (fadeSpeed * baseVol) / 100);
@@ -211,5 +211,9 @@ async function audioFadeOut(num) {
   let audio = document.getElementById("btn_audio" + num);
   var end_func = setInterval(function () {
     audio.volume = audio.volume - baseVol / 100;
+    if (audio.volume <= 0.1) {
+      clearInterval(end_func);
+      audio.volume = 0;
+    }
   }, (fadeSpeed * baseVol) / 100);
 }
