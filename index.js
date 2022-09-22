@@ -1,11 +1,10 @@
 //固定値
-const baseVol = 0.8; //ベースボリューム
-const fadeSpeed = 2000; //フェードインスピード
+const baseVol = 1.0; //ベースボリューム
+const fadeSpeed = 4000; //フェードインスピード
 
 //ページ読み込み時実行プログラム
 window.onload = function () {
   let audioList = getAudioList();
-  console.log(audioList.length);
 
   for (let i = 0; i < audioList.length; i++) {
     if (i != 0) {
@@ -73,12 +72,14 @@ function allStop() {
 
 // 全部開始
 function allStart() {
+  let cueList = [3, 4, 5, 6];
   let result = confirm("すべて開始しますか？※1曲目以外音量0");
   if (result) {
-    for (let i = 1; i < 10; i++) {
-      audioPlay(i);
-      if (i != 1) {
-        document.getElementById("btn_audio" + i).volume = 0;
+    for (let i = 0; i < cueList.length; i++) {
+      console.log(i);
+      audioPlay(cueList[i]);
+      if (i != 0) {
+        document.getElementById("btn_audio" + cueList[i]).volume = 0;
       }
     }
   }
