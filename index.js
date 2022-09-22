@@ -1,6 +1,18 @@
 //固定値
-const baseVol = 1.0; //ベースボリューム
-const fadeSpeed = 4000; //フェードインスピード
+const baseVol = 1.0; //同時再生する曲の音量一括設定
+const fadeSpeed = 4000; //フェードインスピード(2000で1小節)
+
+//SEのレベル調整
+const seLevel = new Map([
+  ["gorilla", 0.7], //ゴリラ
+  ["gun", 0.9], //銃声
+  ["bomb", 0.9], //爆発音
+  ["hyuun", 0.9], //ヒューン
+  ["deden", 0.9], //出題
+  ["pinpon", 0.9], //正解
+  ["bubu", 0.9], //ブブ
+  ["gabu", 0.9], //サメのガブー
+]);
 
 //ページ読み込み時実行プログラム
 window.onload = function () {
@@ -85,8 +97,13 @@ function allStart() {
   }
 }
 
-// ゴリラSE再生
+// SE再生
 function playSE(seName) {
+  try {
+    document.getElementById(seName).volume = seLevel.get(seName);
+  } catch (e) {
+    console.log(e);
+  }
   document.getElementById(seName).currentTime = 0;
   document.getElementById(seName).play();
 }
@@ -114,6 +131,7 @@ function create(id, title, path, memo) {
   createBtn(id, "audioStop", "停止");
   createBtn(id, "audioUp", "UP");
   createBtn(id, "audioDown", "DOWN");
+  createBtn(id, "audioFadeOut", "フェードアウト");
 
   //音量追加
   let levelElement = document.createElement("p");
@@ -212,7 +230,7 @@ async function audioFadeOut(num) {
   let audio = document.getElementById("btn_audio" + num);
   var end_func = setInterval(function () {
     audio.volume = audio.volume - baseVol / 100;
-    if (audio.volume <= 0.1) {
+    if (audio.volume <= 0.03) {
       clearInterval(end_func);
       audio.volume = 0;
     }

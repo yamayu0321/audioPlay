@@ -70,3 +70,7 @@ select {
   width: auto;
   font-size: 1em;
 }
+
+footer {
+  z-index: 10;
+}
