@@ -4,7 +4,7 @@ const fadeSpeed = 4000; //フェードインスピード(2000で1小節)
 
 //SEのレベル調整
 const seLevel = new Map([
-  ["gorilla", 0.7], //ゴリラ
+  ["gorilla", 0.8], //ゴリラ
   ["gun", 0.9], //銃声
   ["bomb", 0.9], //爆発音
   ["hyuun", 0.9], //ヒューン
@@ -82,10 +82,10 @@ function allStop() {
   }
 }
 
-// 全部開始
+// 同時再生開始
 function allStart() {
-  let cueList = [3, 4, 5, 6];
-  let result = confirm("すべて開始しますか？※1曲目以外音量0");
+  let cueList = [5, 6, 7, 8]; //同時再生する曲のidリスト
+  let result = confirm("同期再生を開始しますか？※進め船長以外音量0");
   if (result) {
     for (let i = 0; i < cueList.length; i++) {
       console.log(i);

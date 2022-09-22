@@ -9,8 +9,12 @@
   </head>
   <body></body>
   <footer>
-    <button class="btn" id="reset" onclick="allStart()">全部開始</button>
+    <button class="btn" id="reset" onclick="allStart()">同期開始</button>
     <button class="btn" id="reset" onclick="allStop()">リセット</button>
+    <button class="btn" onclick="playSE('gabu')">ガブ</button>
+    <audio id="gabu">
+      <source src="./audio/gabu.mp3" type="audio/mp3" />
+    </audio>
     <button class="btn" onclick="playSE('gorilla')">ゴリラ</button>
     <audio id="gorilla">
       <source src="./audio/gorilla.mp3" type="audio/mp3" />
@@ -42,17 +46,17 @@
     <form name="transition" style="display: inline">
       <p style="display: inline">終了→</p>
       <select name="inMusic">
-        <option value="3">進め船長</option>
-        <option value="4">通せゴリラ</option>
-        <option value="5">やあ先住民</option>
-        <option value="6">船長with先住民</option>
+        <option value="5">進め船長</option>
+        <option value="6">通せゴリラ</option>
+        <option value="7">やあ先住民</option>
+        <option value="8">船長with先住民</option>
       </select>
       <p style="display: inline">開始→</p>
       <select name="outMusic">
-        <option value="3">進め船長</option>
-        <option value="4">通せゴリラ</option>
-        <option value="5">やあ先住民</option>
-        <option value="6">船長with先住民</option>
+        <option value="5">進め船長</option>
+        <option value="6">通せゴリラ</option>
+        <option value="7">やあ先住民</option>
+        <option value="8">船長with先住民</option>
       </select>
       <input type="button" value="切り替え" onclick="audioTransition()" />
     </form>
